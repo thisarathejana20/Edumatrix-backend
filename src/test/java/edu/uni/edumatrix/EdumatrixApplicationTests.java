@@ -1,4 +1,4 @@
-package com.edu.edumatrix;
+package edu.uni.edumatrix;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
