@@ -1,11 +1,7 @@
-package edu.uni.edumatrix.model;
+package edu.uni.edumatrix.model.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import java.time.Instant;
 import java.util.List;
 
@@ -13,6 +9,7 @@ import java.util.List;
 @Table(name = "users")
 @Setter
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -43,6 +40,10 @@ public class User {
 
     @Column(nullable = false)
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "user_privileges", joinColumns = @JoinColumn(name = "user_id"))

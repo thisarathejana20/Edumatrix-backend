@@ -23,7 +23,7 @@ public class FacultyDTO {
 
     @Getter @Setter @AllArgsConstructor
     public static class Response {
-        private Long id;
+        private String id;
         private String name;
         private String code;
         private String description;

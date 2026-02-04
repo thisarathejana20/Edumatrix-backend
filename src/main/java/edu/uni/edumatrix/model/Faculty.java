@@ -21,7 +21,7 @@ public class Faculty {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
 
     @Column(nullable=false, length=150)
     private String name;

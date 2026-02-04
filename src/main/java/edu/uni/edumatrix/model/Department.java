@@ -19,8 +19,8 @@ import lombok.Setter;
 public class Department {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @ManyToOne(optional=false, fetch = FetchType.LAZY)
     @JoinColumn(name="faculty_id", nullable=false)

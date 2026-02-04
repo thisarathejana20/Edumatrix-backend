@@ -1,6 +1,6 @@
 package edu.uni.edumatrix.config;
 
-import edu.uni.edumatrix.model.User;
+import edu.uni.edumatrix.model.user.User;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

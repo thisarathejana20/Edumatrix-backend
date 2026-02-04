@@ -27,7 +27,7 @@ public class DepartmentDTO {
 
     @Getter @Setter @AllArgsConstructor
     public static class Response {
-        private Long id;
+        private String id;
         private Long facultyId;
         private String facultyName;
         private String name;

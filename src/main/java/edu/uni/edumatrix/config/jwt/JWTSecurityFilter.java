@@ -3,7 +3,7 @@ package edu.uni.edumatrix.config.jwt;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import edu.uni.edumatrix.config.GlobalConfig;
 import edu.uni.edumatrix.config.Session;
-import edu.uni.edumatrix.model.User;
+import edu.uni.edumatrix.model.user.User;
 import edu.uni.edumatrix.service.UserService;
 import edu.uni.edumatrix.util.commons.RequestDataProvider;
 import edu.uni.edumatrix.util.constants.TokenTypes;
