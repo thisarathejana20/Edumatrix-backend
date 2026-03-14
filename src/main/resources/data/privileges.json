@@ -1,0 +1,109 @@
+[
+  {
+    "group": "USER_MANAGEMENT",
+    "module": "USER_MANAGEMENT",
+    "privileges": [
+      { "action": "USER_MANAGEMENT.CREATE", "name": "CREATE_USER", "description": "Create system users" },
+      { "action": "USER_MANAGEMENT.UPDATE", "name": "UPDATE_USER", "description": "Update user information" },
+      { "action": "USER_MANAGEMENT.VIEW", "name": "VIEW_USERS", "description": "View all users" },
+      { "action": "USER_MANAGEMENT.STATUS_CHANGE", "name": "STATUS_CHANGE", "description": "Enable or disable users" }
+    ]
+  },
+
+  {
+    "group": "FACULTY_MANAGEMENT",
+    "module": "FACULTY_MANAGEMENT",
+    "privileges": [
+      { "action": "FACULTY_MANAGEMENT.CREATE", "name": "CREATE", "description": "Create faculty" },
+      { "action": "FACULTY_MANAGEMENT.UPDATE", "name": "UPDATE", "description": "Update faculty" },
+      { "action": "FACULTY_MANAGEMENT.VIEW", "name": "VIEW", "description": "View faculties" },
+      { "action": "FACULTY_MANAGEMENT.DELETE", "name": "DELETE", "description": "Delete faculty" }
+    ]
+  },
+
+  {
+    "group": "DEPARTMENT_MANAGEMENT",
+    "module": "DEPARTMENT_MANAGEMENT",
+    "privileges": [
+      { "action": "DEPARTMENT_MANAGEMENT.CREATE", "name": "CREATE", "description": "Create department" },
+      { "action": "DEPARTMENT_MANAGEMENT.UPDATE", "name": "UPDATE", "description": "Update department" },
+      { "action": "DEPARTMENT_MANAGEMENT.VIEW", "name": "VIEW", "description": "View departments" },
+      { "action": "DEPARTMENT_MANAGEMENT.DELETE", "name": "DELETE", "description": "Delete department" }
+    ]
+  },
+
+  {
+    "group": "COURSE_MANAGEMENT",
+    "module": "COURSE_MANAGEMENT",
+    "privileges": [
+      { "action": "COURSE_MANAGEMENT.CREATE", "name": "CREATE", "description": "Create course" },
+      { "action": "COURSE_MANAGEMENT.UPDATE", "name": "UPDATE", "description": "Update course" },
+      { "action": "COURSE_MANAGEMENT.VIEW", "name": "VIEW", "description": "View courses" },
+      { "action": "COURSE_MANAGEMENT.DELETE", "name": "DELETE", "description": "Delete course" }
+    ]
+  },
+
+  {
+    "group": "COURSE_ASSIGNMENT_MANAGEMENT",
+    "module": "COURSE_ASSIGNMENT_MANAGEMENT",
+    "privileges": [
+      { "action": "COURSE_ASSIGNMENT_MANAGEMENT.CREATE", "name": "CREATE", "description": "Assign lecturer to course" },
+      { "action": "COURSE_ASSIGNMENT_MANAGEMENT.VIEW", "name": "VIEW", "description": "View course assignments" },
+      { "action": "COURSE_ASSIGNMENT_MANAGEMENT.DELETE", "name": "DELETE", "description": "Remove course assignment" }
+    ]
+  },
+
+  {
+    "group": "STUDENT_ENROLLMENT_MANAGEMENT",
+    "module": "STUDENT_ENROLLMENT_MANAGEMENT",
+    "privileges": [
+      { "action": "STUDENT_ENROLLMENT_MANAGEMENT.CREATE", "name": "CREATE", "description": "Enroll student to course" },
+      { "action": "STUDENT_ENROLLMENT_MANAGEMENT.VIEW", "name": "VIEW", "description": "View enrollments" },
+      { "action": "STUDENT_ENROLLMENT_MANAGEMENT.DELETE", "name": "DELETE", "description": "Remove enrollment" }
+    ]
+  },
+
+  {
+    "group": "GRADE_MANAGEMENT",
+    "module": "GRADE_MANAGEMENT",
+    "privileges": [
+      { "action": "GRADE_MANAGEMENT.CREATE", "name": "CREATE", "description": "Create student grade" },
+      { "action": "GRADE_MANAGEMENT.UPDATE", "name": "UPDATE", "description": "Update student grade" },
+      { "action": "GRADE_MANAGEMENT.VIEW", "name": "VIEW", "description": "View grades" }
+    ]
+  },
+
+  {
+    "group": "ATTENDANCE_MANAGEMENT",
+    "module": "ATTENDANCE_MANAGEMENT",
+    "privileges": [
+      { "action": "ATTENDANCE_MANAGEMENT.CREATE", "name": "CREATE", "description": "Record attendance" },
+      { "action": "ATTENDANCE_MANAGEMENT.UPDATE", "name": "UPDATE", "description": "Update attendance" },
+      { "action": "ATTENDANCE_MANAGEMENT.VIEW", "name": "VIEW", "description": "View attendance" }
+    ]
+  },
+
+  {
+    "group": "MY_COURSES",
+    "module": "MY_COURSES",
+    "privileges": [
+      { "action": "MY_COURSES.VIEW", "name": "VIEW", "description": "View my courses" }
+    ]
+  },
+
+  {
+    "group": "MY_GRADES",
+    "module": "MY_GRADES",
+    "privileges": [
+      { "action": "MY_GRADES.VIEW", "name": "VIEW", "description": "View my grades" }
+    ]
+  },
+
+  {
+    "group": "MY_ATTENDANCE",
+    "module": "MY_ATTENDANCE",
+    "privileges": [
+      { "action": "MY_ATTENDANCE.VIEW", "name": "VIEW", "description": "View my attendance" }
+    ]
+  }
+]
