@@ -30,17 +30,17 @@ public class FacultyService {
         return toDto(f);
     }
 
-    public List<FacultyDTO.Response> list() {
+    public List<FacultyDTO.Response> getAll() {
         return facultyRepo.findAll().stream().map(this::toDto).toList();
     }
 
-    public FacultyDTO.Response get(Long id) {
+    public FacultyDTO.Response get(String id) {
         Faculty f = facultyRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException("Faculty not found: " + id));
         return toDto(f);
     }
 
-    public FacultyDTO.Response update(Long id, FacultyDTO.CreateRequest req) {
+    public FacultyDTO.Response update(String id, FacultyDTO.CreateRequest req) {
         Faculty f = facultyRepo.findById(id)
                 .orElseThrow(() -> new NotFoundException("Faculty not found: " + id));
 
@@ -57,7 +57,7 @@ public class FacultyService {
         return toDto(f);
     }
 
-    public void delete(Long id) {
+    public void delete(String id) {
         if (!facultyRepo.existsById(id)) {
             throw new NotFoundException("Faculty not found: " + id);
         }
