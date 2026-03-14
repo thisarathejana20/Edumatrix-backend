@@ -23,23 +23,18 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    private String mobile;
-
-    private String address;
-
-    private String empId;
-
-    private String designation;
-
-    private String department;
-
     @Column(nullable = false)
     private String password;
+
+    private String phone;
 
     private String otp;
 
     @Column(nullable = false)
     private String status;
+
+    @Column(nullable = false)
+    private boolean hasSystemAccess;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -59,7 +54,6 @@ public class User {
         StringBuilder sb = new StringBuilder();
         if (fullName != null) sb.append(fullName).append(" ");
         if (email != null) sb.append(email).append(" ");
-        if (empId != null) sb.append(empId).append(" ");
         this.query = sb.toString().trim().toLowerCase();
     }
 

@@ -105,13 +105,12 @@ public class DataInitializer {
 
             User adminUser = User.builder()
                     .fullName("Admin")
-                    .empId("ADMIN-123")
-                    .address("Colombo")
                     .email(email)
                     .role(adminRole)
                     .password(passwordEncoder.encode(admin.get("password")))
                     .status(UserStatus.USER_STATUS_PENDING_ACTIVATION)
                     .privileges(rolePrivilegeLoader.getRolePrivileges().get(RoleTypes.ROOT_ADMIN))
+                    .hasSystemAccess(true)
                     .build();
 
             if (userRepository.findByEmail(adminUser.getEmail()).isEmpty()) userRepository.save(adminUser);

@@ -58,7 +58,7 @@ public class UserService {
         log.info("User SignIn Request: {}", request.getEmail());
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new InvalidCredentialsException("Invalid credentials"));
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (user.isHasSystemAccess() && !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new InvalidCredentialsException(AUTH_FAILED_MESSAGE);
         }
         Response<User> userResponse = Response.of(user);
@@ -264,10 +264,7 @@ public class UserService {
 //    }
 
     private boolean isValidRole(String role) {
-        return RoleTypes.HR_ADMIN.equalsIgnoreCase(role) ||
-                RoleTypes.JUNIOR_HR_ADMIN.equalsIgnoreCase(role) ||
-                RoleTypes.EMPLOYEE.equalsIgnoreCase(role) ||
-                RoleTypes.REPORTING_MANAGER.equalsIgnoreCase(role) ||
+        return RoleTypes.EMPLOYEE.equalsIgnoreCase(role) ||
                 RoleTypes.GUEST.equalsIgnoreCase(role);
     }
 
@@ -394,31 +391,6 @@ public class UserService {
 //        return Response.of(user);
 //    }
 
-    public Page<User> getAllUsers(String role, String designation, String query,
-                                  int startPage, int pageSize) {
-        log.info("Get all users with:  {}, {}, {} & pagination: {}, {}", role, designation, query, startPage, pageSize);
-        Pageable pageable = PageRequest.of(startPage, pageSize, Sort.by(Sort.Direction.DESC, "updatedAt"));
-        Page<User> users;
-        if (query == null) {
-            boolean hasRole = role != null && !role.isBlank() && !"ALL".equalsIgnoreCase(role);
-            boolean hasDesignation = designation != null && !designation.isBlank() && !"ALL".equalsIgnoreCase(designation);
-
-            if (hasRole && hasDesignation) {
-                users = userRepository.findByRole_NameAndDesignationAndRole_NameNot(
-                        role.toUpperCase(), designation, ROOT_ADMIN, pageable);
-            } else if (hasRole) {
-                users = userRepository.findByRoleNameAndExclude(role.toUpperCase(), ROOT_ADMIN, pageable);
-            } else if (hasDesignation) {
-                users = userRepository.findByDesignationAndRole_NameNot(designation, ROOT_ADMIN, pageable);
-            } else {
-                users = userRepository.findAllByRole_NameNot(ROOT_ADMIN, pageable);
-            }
-        } else {
-            users = searchUsers(query, startPage, pageSize);
-        }
-        return users;
-    }
-
     public Response<User> getUserById(String id) {
         log.info("Get user by ID: {}", id);
         User user = userRepository.findById(id).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND_MESSAGE));
@@ -426,17 +398,5 @@ public class UserService {
             throw new BadRequestException("Root Admin user cannot be accessed");
         }
         return Response.of(user);
-    }
-
-    public List<User> searchUsers(String keyword) {
-        log.info("Search users for: {}", keyword);
-        return userRepository.searchUsers(keyword.trim().toLowerCase(), Limit.of(10))
-                .orElseThrow(() -> new NotFoundException("No users found"));
-    }
-
-    public Page<User> searchUsers(String keyword, int page, int size) {
-        log.info("Search users with pagination for: {} with pagination: {}, {}", keyword, page, size);
-        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "updatedAt"));
-        return userRepository.searchUsers(keyword.trim().toLowerCase(), ROOT_ADMIN, pageable);
     }
 }

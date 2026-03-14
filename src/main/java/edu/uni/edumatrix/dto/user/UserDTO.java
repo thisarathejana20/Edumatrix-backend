@@ -14,11 +14,7 @@ public class UserDTO {
     private String id;
     private String fullName;
     private String email;
-    private String mobile;
-    private String address;
     private String status;
-    private String empId;
-    private String designation;
     private List<String> privileges;
     private Map<String, List<String>> permissions = new HashMap<>();
 
@@ -29,10 +25,6 @@ public class UserDTO {
         userDTO.setFullName(user.getFullName());
         userDTO.setEmail(user.getEmail());
         userDTO.setStatus(user.getStatus());
-        userDTO.setEmpId(user.getEmpId());
-        userDTO.setDesignation(user.getDesignation());
-        userDTO.setMobile(user.getMobile());
-        userDTO.setAddress(user.getAddress());
         Map<String, List<String>> permissions = new HashMap<>();
         permissions.put("moduleView", extractModules(user.getPrivileges(), groups));
         permissions.put("moduleActions", extractActions(user.getPrivileges(), groups));

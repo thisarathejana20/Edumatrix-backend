@@ -99,25 +99,6 @@ public class AuthController {
                 .header(HeaderTypes.REFRESH_TOKEN, userResponse.getMetaData().get(HeaderTypes.REFRESH_TOKEN))
                 .body(UserDTO.init(userResponse.getData(), privilegeLoader.getGroups()));
     }
-
-//    @PostMapping("/create-user")
-//    @RequirePrivileges({"USER_MANAGEMENT.CREATE"})
-//    public ResponseEntity<UserDTO> createUser(@Valid @RequestBody CreateUserDTO createUserDTO) {
-//        Response<User> userResponse = userService.createUser(createUserDTO);
-//        return ResponseEntity.ok().body(
-//                UserDTO.init(userResponse.getData(), privilegeLoader.getGroups())
-//        );
-//    }
-//
-//    @PutMapping("/edit-user/{id}")
-//    @RequirePrivileges({"USER_MANAGEMENT.UPDATE"})
-//    public ResponseEntity<UserDTO> editUser(@Valid @RequestBody EditUserDTO editUserDTO,
-//                                            @PathVariable String id) {
-//        Response<User> userResponse = userService.editUser(editUserDTO,id);
-//        return ResponseEntity.ok().body(
-//                UserDTO.init(userResponse.getData(), privilegeLoader.getGroups())
-//        );
-//    }
 //
 //    @PutMapping("/inactivate/{id}")
 //    @RequirePrivileges({"USER_MANAGEMENT.STATUS_CHANGE"})
@@ -135,66 +116,13 @@ public class AuthController {
 //                .body(UserDTO.init(userResponse.getData(), privilegeLoader.getGroups()));
 //    }
 //
-    @GetMapping("")
-    @RequirePrivileges({"USER_MANAGEMENT.VIEW"})
-    public ResponseEntity<PaginatedResponse<List<UserDTO>>> getAllUsers(
-            @RequestParam(required = false) String role,
-            @RequestParam(required = false) String designation,
-            @RequestParam(required = false) String query,
-            @RequestParam(defaultValue = "0", name = "page") int page,
-            @RequestParam(defaultValue = "10", name = "size") int size) {
-        Page<User> users = userService.getAllUsers(role, designation, query, page, size);
-        PaginatedResponse<List<UserDTO>> listPaginatedResponse = PaginatedResponse.of(
-                UserDTO.init(users.getContent(), privilegeLoader.getGroups()));
-        listPaginatedResponse.setTotalPages(users.getTotalPages());
-        listPaginatedResponse.setTotalElements(users.getTotalElements());
-        listPaginatedResponse.setPage(users.getNumber());
-        listPaginatedResponse.setSize(users.getSize());
-        listPaginatedResponse.setLast(users.isLast());
-        return ResponseEntity.ok(listPaginatedResponse);
-    }
 
-    @GetMapping("/{id}")
-    @RequirePrivileges({"USER_MANAGEMENT.VIEW"})
-    public ResponseEntity<UserDTO> getUserById(@PathVariable String id) {
-        Response<User> response = userService.getUserById(id);
-        UserDTO dto = UserDTO.init(response.getData(), privilegeLoader.getGroups());
-        return ResponseEntity.ok(dto);
-    }
-//
-//
-//    @GetMapping("/privileges")
-//    public ResponseEntity<List<PrivilegeGroupDTO>> getPrivilegeGroups() {
-//        return ResponseEntity.ok(userService.getAllPrivilegeGroups());
-//    }
-//
     @GetMapping("/current-user")
     public ResponseEntity<UserDTO> getCurrentUser() {
         User user = userService.getSessionUser();
         return ResponseEntity.ok(UserDTO.init(user, privilegeLoader.getGroups()));
     }
-//
-//
-//    @GetMapping("/search")
-//    @RequirePrivileges({"USER_MANAGEMENT.VIEW"})
-//    public ResponseEntity<List<UserDTO>> searchUsersForReportingPerson(@RequestParam(required = true) String query,
-//                                                                       @RequestParam(required = true) String type) {
-//        List<User> listOfUsers = userService.searchUsers(query);
-//        List<UserDTO> dtoList;
-//        if (type.equals("USER")) {
-//            dtoList = listOfUsers.stream()
-//                    .filter(user -> user.getRole() == null || (!ROOT_ADMIN.equalsIgnoreCase(user.getRole().getName())
-//                            && !user.getDesignation().startsWith("Intern")))
-//                    .map(user -> UserDTO.init(user, privilegeLoader.getGroups()))
-//                    .toList();
-//        } else {
-//            dtoList = listOfUsers.stream()
-//                    .filter(user -> user.getRole() == null || (!ROOT_ADMIN.equalsIgnoreCase(user.getRole().getName())))
-//                    .map(user -> UserDTO.init(user, privilegeLoader.getGroups()))
-//                    .toList();
-//        }
-//        return ResponseEntity.ok(dtoList);
-//    }
+
 //
 //    @PutMapping("/resend-invitation")
 //    @RequirePrivileges({"USER_MANAGEMENT.CREATE"})
