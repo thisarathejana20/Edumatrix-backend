@@ -1,10 +1,7 @@
 package edu.uni.edumatrix.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(
@@ -14,8 +11,11 @@ import lombok.Setter;
                 @UniqueConstraint(name = "uk_dept_faculty_name", columnNames = {"faculty_id", "name"})
         }
 )
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Department {
 
     @Id

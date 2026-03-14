@@ -13,7 +13,7 @@ public class DepartmentDTO {
     @Setter
     public static class CreateRequest {
         @NotNull
-        private Long facultyId;
+        private String facultyId;
 
         @NotBlank
         @Size(max=150)
@@ -28,7 +28,7 @@ public class DepartmentDTO {
     @Getter @Setter @AllArgsConstructor
     public static class Response {
         private String id;
-        private Long facultyId;
+        private String facultyId;
         private String facultyName;
         private String name;
         private String code;
