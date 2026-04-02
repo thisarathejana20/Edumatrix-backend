@@ -39,6 +39,12 @@ public class SecurityBeans {
         config.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
+        config.setExposedHeaders(List.of(
+                "Authorization",
+                "Refresh-token",
+                "Account-Verification-Token",
+                "Password-Reset-Token"
+        ));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
